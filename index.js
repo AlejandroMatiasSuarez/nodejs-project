@@ -1,14 +1,17 @@
-const server = require('./server');
-const router = require('./router');
-server.init(router.route);
-/*
-const params = process.argv.slice(2);
-let sum = 0;
-for (let i = 0; i < params.length; i++) {
-    sum = sum + parseFloat(params[i]);
-}
-const response = `
- La suma  es ${sum}
-`;
-console.log(response);
-*/
+const express = require('express');
+const bodyParser = require('body-parser');
+
+const myApp = express();
+
+//middlewares
+myApp.use(bodyParser.urlencoded({extended: false}));
+myApp.use(bodyParser.json());
+
+//Routes
+myApp.get('/test', (request, response) => {
+    response.status(200).send({
+        message: 'Hello World!'
+    });
+});
+
+console.log('Hello World'); 
