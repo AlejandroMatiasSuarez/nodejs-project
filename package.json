@@ -10,14 +10,10 @@
   "author": "Comisión 8",
   "license": "ISC",
   "dependencies": {
-<<<<<<< HEAD
-    "express": "^4.17.1"
-=======
     "express": "^4.17.1",
     "mongoose": "^5.9.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.2"
->>>>>>> 39d6479a1e32310a8d3865618f3a72a98f525a19
   }
 }
