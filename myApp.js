@@ -1,6 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const mockedData = require('./data/db.json');
+const mockedData = require('./data/db');
 const comments = mockedData.comments;
 
 const myApp = express();
