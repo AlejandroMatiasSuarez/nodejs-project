@@ -13,8 +13,7 @@ mongoose.connect('mongodb://localhost:27017/test_com_8')
         // Define Schema
         const userScheme = mongoose.Schema({
             name: String,
-            lastname: String,
-            email: String
+            password: String,
         });
         // Schema Comments
         const commentsSchema = mongoose.Schema({
@@ -45,28 +44,28 @@ mongoose.connect('mongodb://localhost:27017/test_com_8')
                 console.log('Comment was added');
             });
         });
-        const matiasUser = new User({
-            _id: mongoose.Types.ObjectId(),
-            name: 'Matías',
-            lastname: 'Aybar',
-            email: 'matiasaybar89@gmail.com',
+        json.articles.forEach(data => {
+            const newArticle = new Article({
+                tittle: data.tittle,
+                date: data.date,
+                copete: data.copete,
+                image: data.image,
+                description: data.description
+            });
+            newArticle.save(() => {
+                console.log('Article was added');
+            });
         });
-        const newArticle = new Article({
-            _id: mongoose.Types.ObjectId(), 
-            tittle: 'SCondenaron a una banda por el robo millonario a una empresa Avícola.',
-            date: Date(),
-            copete: 'Cinco hombres fueron condenados por el delito de robo agravado a una empresa avícola',
-            image: 'https://us.cdn.eltribuno.com/012020/1578607950961.jpg?x=0&y=1&width=996&height=569&rotate=0&scaleX=1&scaleY=1&ow=999&oh=570&&cw=480&ch=300',
-            description: 'César Efraín Limón (28) y Cristian Omar Martínez (21) recibieron una condena de tres años de prisión'
-        })
+        json.users.forEach(data => {
+            const matiasUser = new User({
+                name: data.userName,
+                password: data.password
+            });
+            matiasUser.save(() => {
+                console.log('User was added');
+            });
+        });
         // Guardo en la base de datos
-        matiasUser.save(() => {
-            console.log('User was added');
-        });
-        
-        newArticle.save(() => {
-            console.log('Article was added');
-        });
         myApp.listen(port, () => {
             console.log(`Server running on http://localhost:${port}...`);
         });
